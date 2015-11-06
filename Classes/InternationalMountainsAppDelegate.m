@@ -1,7 +1,7 @@
 /*
      File: InternationalMountainsAppDelegate.m
  Abstract: Application delegate class implementation
-  Version: 1.0
+  Version: 1.1
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -41,7 +41,7 @@
  STRICT LIABILITY OR OTHERWISE, EVEN IF APPLE HAS BEEN ADVISED OF THE
  POSSIBILITY OF SUCH DAMAGE.
  
- Copyright (C) 2009 Apple Inc. All Rights Reserved.
+ Copyright (C) 2010 Apple Inc. All Rights Reserved.
  
 */ 
 
@@ -101,7 +101,7 @@ NSString *kSettingKey = @"sort";
 		NSString *finalPath = [settingsBundlePath stringByAppendingPathComponent:@"Root.plist"];
 		NSDictionary *settingsDict = [NSDictionary dictionaryWithContentsOfFile:finalPath];
 		NSArray *prefSpecifierArray = [settingsDict objectForKey:@"PreferenceSpecifiers"];
-		NSNumber *settingDefault;
+		NSNumber *settingDefault = nil;
 		NSDictionary *prefItem;
 		
 		for (prefItem in prefSpecifierArray) {
@@ -113,10 +113,12 @@ NSString *kSettingKey = @"sort";
 			}
 		}
 		
-		NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
+		if (settingDefault != nil) {
+			NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
 									 settingDefault, kSettingKey, nil];		
-		[defaults registerDefaults:appDefaults];
-		[defaults synchronize];
+			[defaults registerDefaults:appDefaults];
+			[defaults synchronize];
+		}
 	}
 	return [defaults boolForKey:kSettingKey];
 }

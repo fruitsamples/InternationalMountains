@@ -55,12 +55,12 @@ CFBundleDisplayName InfoPlist.strings entry.
 ================================================================================
 BUILD REQUIREMENTS:
 
-Mac OS X 10.5.6 or later, iPhone SDK 3.0
+Mac OS X 10.6.3 or later, iOS SDK 4.0
 
 ================================================================================
 RUNTIME REQUIREMENTS:
 
-Mac OS X 10.5.6 or later, iPhone SDK 3.0
+iOS 4.0
 
 ================================================================================
 PACKAGING LIST:
@@ -143,10 +143,38 @@ setting the phone to simplified Chinese will automatically have the application
 use its traditional Chinese character resources, rather than defaulting to
 English.
 
+ADDING A NEW LOCALIZATION
+================================================================================
+
+In this sample, adding a new localization can be done in XCode.  For each 
+localized resource file (InfoPlist.strings, Localizable.strings, 
+DetailViewController.xib, MainWindow.xib and Mountains.plist), you can 
+select the file group in the Groups & Files pane and then pick File->Get Info.
+In the Localized Group Info dialog, under the General tab, you can see the
+current list of localizations, and pick "Add Localization" to add a new 
+localization, specifying a language+locale identifier name formatted to match
+BCP 47 standards, that is using a language and locale supported by the device.
+XCode will make a new .lproj folder in the project directory with the specified
+language+locale identifier, and copy the project native development region
+version of the resource file (in this case, "en") to this folder, which can
+then be localized.  
+
+You can also add localizations manually by creating appropriately named
+.lproj folders, copying resource files to this folder, localizing the files,
+and then adding them manually as existing files to the project in XCode.
+
+For the localized resources in the Settings.bundle bundle, you will have to
+add new localizations manually, as XCode cannot interact directly with
+resources in included bundles.
+
+Please note that localizing the application icon is not currently supported
+at this time on iOS.
+
 ================================================================================
 CHANGES FROM PREVIOUS VERSIONS:
 
+1.1 - Updates to make project compatible with iOS 4.0 SDK.
 1.0 - First release.
 
 ================================================================================
-Copyright (C) 2009 Apple Inc. All rights reserved.
+Copyright (C) 2009-2010 Apple Inc. All rights reserved.

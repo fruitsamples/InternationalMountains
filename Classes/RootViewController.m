@@ -1,7 +1,7 @@
 /*
      File: RootViewController.m
  Abstract: Top-level view controller class implementation
-  Version: 1.0
+  Version: 1.1
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -41,7 +41,7 @@
  STRICT LIABILITY OR OTHERWISE, EVEN IF APPLE HAS BEEN ADVISED OF THE
  POSSIBILITY OF SUCH DAMAGE.
  
- Copyright (C) 2009 Apple Inc. All Rights Reserved.
+ Copyright (C) 2010 Apple Inc. All Rights Reserved.
  
 */ 
 
@@ -128,7 +128,7 @@ NSInteger mountainSort(id m1, id m2, void *context) {
 	/* Get the text to display in the tableview cell.  We've already loaded
 	   the localized mountain name from the bundle data using loadMountainsWithBundle */
 	NSDictionary *mountainDictionary = [mountains objectAtIndex:[indexPath row]];
-	cell.text = [mountainDictionary objectForKey:kMountainNameString];
+	cell.textLabel.text = [mountainDictionary objectForKey:kMountainNameString];
     return cell;
 }
 
